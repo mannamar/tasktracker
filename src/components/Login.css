@@ -14,6 +14,7 @@
     font-size: 32px;
     color: white;
     font-weight: bold;
+    margin: 0;
 }
 
 .login-subheader {
@@ -37,7 +38,7 @@
 }
 
 .input-field {
-    width: 330px;
+    width: 280px;
     height: 45px;
     border-radius: 15px;
     border: none;
@@ -49,7 +50,6 @@
 .input-field:focus {
     outline: none;
 }
-
 ::placeholder {
     color: #D6D6D6;
 }
