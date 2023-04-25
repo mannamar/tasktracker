@@ -1,0 +1,21 @@
+.modal {
+    --bs-modal-bg: #3D4051 !important;
+}
+
+.modTitle {
+    color: white;
+}
+
+.inp, .inp:focus {
+    background-color: #5D5E76;
+    color: white;
+    border: none;
+}
+
+.inp::placeholder {
+    color: #D6D6D6;
+}
+
+.descInp {
+    height: 183px;
+}
