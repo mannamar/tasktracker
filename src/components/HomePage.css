@@ -4,7 +4,7 @@
     background-color: rgba(31, 31, 45, 1) !important;
 }
 
-.navbar-brand{
+.nav-title{
     color: white;
     font-size: 48px;
     font-family: 'Montserrat', sans-serif;
@@ -42,11 +42,36 @@
 
 }
 
+.card{
+    --bs-card-border-width: none;
+    --bs-card-border-radius: 15px;
+    border: none !important;
+    margin-top: 20px;
+}
+
+.card-header{
+    border-radius: 15px 15px 0 0!important;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.plus{
+    width: 25px;
+    height: 25px;
+}
+
+.card-body{
+    background-color: rgba(61, 64, 81, 1);
+    min-height: 500px;
+    border-radius: 0 0 15px 15px;
+}
+
 .to-do{
     background-color: rgba(89, 116, 123, 1);
     border-radius: 15px 15px 15px 15px;
     color: white;
-    font-size: 24px;
+    font-size: 20px;
     font-family: 'Montserrat', sans-serif;
 }
 
@@ -56,12 +81,17 @@
 }
 
 @media screen and (max-width: 991px) {
-    .navbar-brand{
+    .nav-title{
         font-size: 24px;
     }
 
     .btn-bg{
-        font-size: 12px;
+        font-size: 15px;
+    }
+
+    .plus{
+        width: 20px;
+        height: 20px;
     }
 
     .field-spacing{
@@ -70,9 +100,14 @@
         flex-direction: column;
        
     }
+
+    .card-header{
+        font-size: 15px;
+    }
     
     .card{
         margin-top: 20px;
+        margin: 20px;
     }
 
    
