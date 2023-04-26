@@ -47,6 +47,13 @@
     --bs-card-border-radius: 15px;
     border: none !important;
     margin-top: 20px;
+    --bs-card-bg: none;
+}
+
+.task-card{
+    min-height: 20px !important;
+    background-color: rgba(93, 94, 118, 1) !important;
+    border-radius: 15px !important;
 }
 
 .card-header{
