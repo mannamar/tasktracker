@@ -13,10 +13,10 @@ export default function Login() {
                         <h2 className='login-box-header'>Login</h2>
                         <input className='input-field' placeholder='Email' type='email'/>
                         <input className='input-field' placeholder='Password' type='password'/>
-                        <button className='login-btn'>Login</button>
+                        <button as={Link} to='/HomePage' className='login-btn'>Login</button>
                         <div className='register-here'>
                             <p className='register-here-text'>Don't have an account?</p>
-                            <Link className='register-here-link' to={'/SignUp'}>Register Here</Link>
+                            <Link to={'/SignUp'} className='register-here-link'>Register Here</Link>
                         </div>
                     </div>
                 </div>

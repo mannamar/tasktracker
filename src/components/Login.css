@@ -76,9 +76,14 @@
 .register-here-text {
     font-size: 12px;
     color: white;
+    margin: 0;
 }
 
 .register-here-link {
     font-size: 12px;
+    color: #59747B;
+    margin: 0;
+}
+.register-here-link:hover {
     color: #59747B;
 }
