@@ -1,10 +1,30 @@
+import { useState } from 'react';
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./HomePage.css"
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import plus from "../Assets/Plus.png";
+import TaskModal from './TaskModal'
+import Button from 'react-bootstrap/Button';
 
 export default function HomePage() {
+
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+    let data = {
+        name: "Walk Dog",
+        description: "Walk Dog after lunch",
+        tag: "Pets",
+        assignee: "Lerissa",
+        priority: "high",
+        status: "In-Prog",
+        date: "2023-04-25",
+        endDate: "2023-04-26"
+    }
+
     return (
         <div>
             <nav className="navbar nav-bg ">
