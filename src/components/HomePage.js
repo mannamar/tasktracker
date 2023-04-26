@@ -39,6 +39,7 @@ export default function HomePage() {
                     <Card className="md-col-4"> 
                         <Card.Header className="to-do">To Do . . .
                         <img className="plus" src={plus} />
+                        <TaskModal status="To-Do" />
                         </Card.Header>
                         <Card.Body>This is some text within a card body.</Card.Body>
                         
