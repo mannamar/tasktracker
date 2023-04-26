@@ -62,9 +62,9 @@ export default function SignUp() {
     }
 
     const validateUsername = (e) => {
-        var email = e.target.value;
+        var username = e.target.value;
   
-        if (validator.isStrongPassword(email, { minLength: 3, minLowercase: 0, minUppercase: 0, minNumbers: 0, minSymbols: 0, returnScore: false})) {
+        if (validator.isLength(username, {min: 3, max: undefined})) {
             setUsernameError('Valid Username');
             setValidUsernameColor('green');
         } else {
@@ -149,7 +149,6 @@ export default function SignUp() {
                         <ul style={{
                             fontSize: '12px',
                             fontWeight: 'bold',
-                            marginBottom: '15px',
                             listStyleType: 'none',
                             padding: '0',
                             margin: '0'
@@ -160,7 +159,6 @@ export default function SignUp() {
                             <li style={{color: `${validNumberColor}`}}>{numberError}</li>
                             <li style={{color: `${validSymbolColor}`}}>{symbolError}</li>
                         </ul>
-                        <input className='input-field' placeholder='Confirm Password' type='password'/>
                         <Link to='/' className='btn-link'>
                             <button className='login-btn'>Sign Up</button>
                         </Link>
