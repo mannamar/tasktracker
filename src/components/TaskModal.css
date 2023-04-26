@@ -49,3 +49,7 @@ select {
 .modal-body {
     padding-bottom: 0;
 }
+
+.taskBtn:hover {
+    cursor: pointer;
+}

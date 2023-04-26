@@ -52,8 +52,8 @@ export default function TaskModal(props) {
         <>
             {
                 props.isEdit ?
-                <DotsThree className="" size={24} color="#000000" onClick={handleShow} /> :
-                <Plus className="" size={24} color="#000000" onClick={handleShow} />
+                <DotsThree className="taskBtn" size={24} color="#FFFFFF" onClick={handleShow} /> :
+                <Plus className="taskBtn" size={24} color="#FFFFFF" onClick={handleShow} />
             }
 
             <Modal className="" show={show} onHide={handleClose} data-bs-theme="dark">
