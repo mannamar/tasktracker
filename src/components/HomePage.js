@@ -10,10 +10,23 @@ export default function HomePage() {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+    let data = {
+        name: "Walk Dog",
+        description: "Walk Dog after lunch",
+        tag: "Pets",
+        assignee: "Lerissa",
+        priority: "high",
+        status: "In-Prog",
+        date: "2023-04-25",
+        endDate: "2023-04-26"
+    }
+
     return (
         <>
             <div>HomePage</div>
-            <TaskModal />
+            <TaskModal status="To-Do"/>
+            <TaskModal status="In-Prog"/>
+            <TaskModal isEdit={true} data={data}/>
         </>
     )
 }

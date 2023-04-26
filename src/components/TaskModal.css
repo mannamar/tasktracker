@@ -1,12 +1,25 @@
+input {
+    color-scheme: dark;
+}
+
+select {
+    background: #5D5E76 url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3e%3cpath fill='white' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right .75rem center/8px 10px !important;
+}
+
 .modal {
-    --bs-modal-bg: #3D4051 !important;
+    --bs-modal-bg: #3D4051;
+}
+
+.modal-content {
+    background-color: #3D4051;
 }
 
 .modTitle {
     color: white;
 }
 
-.inp, .inp:focus {
+.inp,
+.inp:focus {
     background-color: #5D5E76;
     color: white;
     border: none;
@@ -17,5 +30,22 @@
 }
 
 .descInp {
-    height: 183px;
+    height: 183px !important;
+}
+
+.inpLabel {
+    color: white;
+}
+
+.btn-close {
+    filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+.modal-footer {
+    border-top: none;
+    padding-top: 0;
+}
+
+.modal-body {
+    padding-bottom: 0;
 }
