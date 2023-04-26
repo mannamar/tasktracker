@@ -13,7 +13,9 @@ export default function SignUp() {
                         <h2 className='login-box-header'>Sign Up</h2>
                         <input className='input-field' placeholder='Email' type='email'/>
                         <input className='input-field' placeholder='Password' type='password'/>
-                        <button as={Link} to='/HomePage' className='login-btn'>Sign Up</button>
+                        <Link to='/' className='btn-link'>
+                            <button className='login-btn'>Sign Up</button>
+                        </Link>
                         <div className='register-here'>
                             <p className='register-here-text'>Already have an account?</p>
                             <Link to={'/Login'} className='register-here-link'>Login Here</Link>
