@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Quicksand:wght@500&display=swap');
 
-.nav-bg{
+.nav-bg {
     background-color: rgba(31, 31, 45, 1) !important;
 }
 
-.nav-title{
+.nav-title {
     color: white;
     font-size: 48px;
     font-family: 'Montserrat', sans-serif;
@@ -12,7 +12,7 @@
 
 }
 
-.btn-bg{
+.btn-bg {
     color: white;
     background-color: rgba(89, 116, 123, 1);
     font-size: 20px;
@@ -25,49 +25,61 @@
     padding-left: 20px;
 }
 
-.field-spacing{
-    display: flex!important;
+.field-spacing {
+    display: flex !important;
     justify-content: space-between;
-}
-
-.row{
     --bs-gutter-x: 0;
     --bs-gutter-y: 0;
-}
-
-.row>* {
- 
     width: auto;
-    
+}
+
+
+.field-spacing>* {
+
+    width: auto;
+
 
 }
 
-.card{
+.card {
     --bs-card-border-width: none;
     --bs-card-border-radius: 15px;
     border: none !important;
     margin-top: 20px;
+    --bs-card-bg: none;
+    max-width: 290px;
+    min-width: 290px;
 }
 
-.card-header{
-    border-radius: 15px 15px 0 0!important;
+.task-card {
+    min-height: 20px !important;
+    background-color: rgba(93, 94, 118, 1) !important;
+    border-radius: 15px !important;
+    max-width: auto;
+    min-width: auto;
+
+}
+
+.card-header {
+    border-radius: 15px 15px 0 0 !important;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.plus{
+.plus {
     width: 25px;
     height: 25px;
 }
 
-.card-body{
+.card-body {
     background-color: rgba(61, 64, 81, 1);
     min-height: 500px;
     border-radius: 0 0 15px 15px;
+
 }
 
-.to-do{
+.to-do {
     background-color: rgba(89, 116, 123, 1);
     border-radius: 15px 15px 15px 15px;
     color: white;
@@ -75,40 +87,49 @@
     font-family: 'Montserrat', sans-serif;
 }
 
-.to-do-body{
+.to-do-body {
     background-color: rgba(61, 64, 81, 1);
     border-radius: 0px 0px 15px 15px;
 }
 
 @media screen and (max-width: 991px) {
-    .nav-title{
+    .nav-title {
         font-size: 24px;
     }
 
-    .btn-bg{
+    .btn-bg {
         font-size: 15px;
     }
 
-    .plus{
+    .plus {
         width: 20px;
         height: 20px;
     }
 
-    .field-spacing{
+    .field-spacing {
         display: flex !important;
-        justify-content: space-between;
         flex-direction: column;
-       
+        align-content: center;
+
     }
 
-    .card-header{
+    .card-header {
         font-size: 15px;
     }
-    
-    .card{
+
+    .card {
         margin-top: 20px;
         margin: 20px;
+        
     }
 
-   
+    .task-card {
+        min-height: 20px !important;
+        background-color: rgba(93, 94, 118, 1) !important;
+        border-radius: 15px !important;
+       
+
+    }
+
+
 }
