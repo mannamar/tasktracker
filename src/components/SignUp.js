@@ -96,10 +96,10 @@ export default function SignUp() {
 
         // Validate Password Has 1 Uppercase
         if (hasUpperCase(password)) {
-            setUppercaseError('Has Lowercase');
+            setUppercaseError('Has Uppercase');
             setValidUppercaseColor('green');
         } else {
-            setUppercaseError('Minimum 1 Lowercase');
+            setUppercaseError('Minimum 1 Uppercase');
             setValidUppercaseColor('red');
         }
 
