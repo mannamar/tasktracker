@@ -1,3 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Quicksand:wght@500&display=swap');
+
 .nav-bg{
     background-color: rgba(31, 31, 45, 1) !important;
+}
+
+.nav-title{
+    color: white;
+    font-size: 48px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+
+}
+
+.btn-bg{
+    color: white;
+    background-color: rgba(89, 116, 123, 1);
+    font-size: 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 400;
+    border: none;
+    border-radius: 15px;
+    padding: 4px;
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+.field-spacing{
+    display: flex!important;
+    justify-content: space-between;
+}
+
+.row{
+    --bs-gutter-x: 0;
+    --bs-gutter-y: 0;
+}
+
+.row>* {
+ 
+    width: auto;
+    
+
+}
+
+.card{
+    --bs-card-border-width: none;
+    --bs-card-border-radius: 15px;
+    border: none !important;
+    margin-top: 20px;
+}
+
+.card-header{
+    border-radius: 15px 15px 0 0!important;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.plus{
+    width: 25px;
+    height: 25px;
+}
+
+.card-body{
+    background-color: rgba(61, 64, 81, 1);
+    min-height: 500px;
+    border-radius: 0 0 15px 15px;
+}
+
+.to-do{
+    background-color: rgba(89, 116, 123, 1);
+    border-radius: 15px 15px 15px 15px;
+    color: white;
+    font-size: 20px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.to-do-body{
+    background-color: rgba(61, 64, 81, 1);
+    border-radius: 0px 0px 15px 15px;
+}
+
+@media screen and (max-width: 991px) {
+    .nav-title{
+        font-size: 24px;
+    }
+
+    .btn-bg{
+        font-size: 15px;
+    }
+
+    .plus{
+        width: 20px;
+        height: 20px;
+    }
+
+    .field-spacing{
+        display: flex !important;
+        justify-content: space-between;
+        flex-direction: column;
+       
+    }
+
+    .card-header{
+        font-size: 15px;
+    }
+    
+    .card{
+        margin-top: 20px;
+        margin: 20px;
+    }
+
+   
 }
