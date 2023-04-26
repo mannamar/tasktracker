@@ -6,6 +6,8 @@ import { Container, Row, Col, Card } from 'react-bootstrap';
 import plus from "../Assets/Plus.png";
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import TaskModal from './TaskModal'
+import { Link } from 'react-router-dom';
+
 
 export default function HomePage() {
     let data = {
@@ -24,7 +26,9 @@ export default function HomePage() {
             <nav className="navbar nav-bg ">
                 <div className="container-fluid">
                     <span className="nav-title mb-0 h1">Task Tracker</span>
+                    <Link to='/Login'>
                     <button type="button" className="btn-bg ">Log Out</button>
+                    </Link>
                 </div>
             </nav>
 
