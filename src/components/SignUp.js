@@ -5,24 +5,24 @@ import validator from 'validator';
 import { useState } from 'react';
 
 export default function SignUp() {
-    const [usernameError, setUsernameError] = useState('Username must be minimum 3 characters');
+    const [usernameError, setUsernameError] = useState('');
     const [validUsernameColor, setValidUsernameColor] = useState('red');
 
     const [validPassword, setValidPassword] = useState(false);
 
-    const [lengthError, setLengthError] = useState('Minimum 8 Characters');
+    const [lengthError, setLengthError] = useState('');
     const [validLengthError, setValidLengthError] = useState('red');
 
-    const [lowercaseError, setlowercaseError] = useState('Minimum 1 Lowercase');
+    const [lowercaseError, setlowercaseError] = useState('');
     const [validLowercaseColor, setValidLowercaseColor] = useState('red');
 
-    const [uppercaseError, setUppercaseError] = useState('Minimum 1 Uppercase');
+    const [uppercaseError, setUppercaseError] = useState('');
     const [validUppercaseColor, setValidUppercaseColor] = useState('red');
 
-    const [numberError, setNumberError] = useState('Minimum 1 Number');
+    const [numberError, setNumberError] = useState('');
     const [validNumberColor, setValidNumberColor] = useState('red');
 
-    const [symbolError, setSymbolError] = useState('Minimum 1 Symbol');
+    const [symbolError, setSymbolError] = useState('');
     const [validSymbolColor, setValidSymbolColor] = useState('red');
 
     function hasLowerCase(str) {
