@@ -6,6 +6,27 @@ select {
     background: #5D5E76 url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3e%3cpath fill='white' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right .75rem center/8px 10px !important;
 }
 
+select:disabled {
+    background: #62627296 url() !important;
+    color: #bebebe;
+}
+
+.inp,
+.inp:focus {
+    background-color: #5D5E76;
+    color: white;
+    border: none;
+}
+
+.inp:disabled {
+    background-color: #62627296;
+    color: #bebebe;
+}
+
+.inp::placeholder {
+    color: #D6D6D6;
+}
+
 .modal {
     --bs-modal-bg: #3D4051;
 }
@@ -16,17 +37,6 @@ select {
 
 .modTitle {
     color: white;
-}
-
-.inp,
-.inp:focus {
-    background-color: #5D5E76;
-    color: white;
-    border: none;
-}
-
-.inp::placeholder {
-    color: #D6D6D6;
 }
 
 .descInp {
@@ -52,4 +62,24 @@ select {
 
 .taskBtn:hover {
     cursor: pointer;
+}
+
+.addBtn {
+    width: 150px;
+    height: 45px;
+    background-color: #59747B;
+    border-radius: 15px;
+    font-size: 20px;
+    color: white;
+    border: none;
+}
+
+.delBtn {
+    width: 150px;
+    height: 45px;
+    background-color: #9b2929;
+    border-radius: 15px;
+    font-size: 20px;
+    color: white;
+    border: none;
 }
