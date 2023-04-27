@@ -22,6 +22,7 @@ export default function HomePage() {
 
     let seedData = [
         {
+            id: "1",
             name: "Walk Dog",
             description: "Walk Dog after lunch",
             tag: "Pets",
@@ -32,6 +33,7 @@ export default function HomePage() {
             endDate: "2023-04-26"
         },
         {
+            id: "2",
             name: "Feed Cat",
             description: "Make sure he gets enough protein",
             tag: "Pets",
@@ -42,6 +44,7 @@ export default function HomePage() {
             endDate: "2023-04-26"
         },
         {
+            id: "3",
             name: "Practice Guitar",
             description: "Learn that gnarly Hendrix riff",
             tag: "Music",
@@ -52,6 +55,7 @@ export default function HomePage() {
             endDate: "2023-04-26"
         },
         {
+            id: "4",
             name: "Plan Vacation",
             description: "Figure out if we're going to Hawaii or Tahiti",
             tag: "Vacay",
@@ -62,6 +66,7 @@ export default function HomePage() {
             endDate: "2023-04-30"
         },
         {
+            id: "5",
             name: "Book Flights",
             description: "Make sure everyone gets a window seat",
             tag: "Vacay",
@@ -72,6 +77,7 @@ export default function HomePage() {
             endDate: "2023-05-30"
         },
         {
+            id: "6",
             name: "Smash Tournament",
             description: "Kick butt and spam down-B",
             tag: "E-Sports",
@@ -83,59 +89,93 @@ export default function HomePage() {
         }
     ]
 
+    function onDragEnd() {
+
+    }
+
     return (
-            <div>
+        <div>
             <nav className="navbar nav-bg ">
                 <div className="container-fluid">
                     <span className="nav-title mb-0 h1">Task Tracker</span>
                     <Link to='/Login'>
-                    <button type="button" className="btn-bg ">Log Out</button>
+                        <button type="button" className="btn-bg ">Log Out</button>
                     </Link>
                 </div>
             </nav>
 
             <Container>
                 <Row className="field-spacing">
-                    <Card className="md-col-4">
-                        <Card.Header className="to-do">To Do . . .
-                            <TaskModal status="To-Do"/>
-                        </Card.Header>
-                        <Card.Body>
-                            
-                            {seedData.filter(task => task.status === "To-Do").map(task => {
-                                return (
-                                    <TaskCard task={task}/>
-                                )
-                            })}
-                            
-                        </Card.Body>
-                        
+                    <DragDropContext onDragEnd={onDragEnd}>
 
-                    </Card>
-                    <Card className="md-col-4">
-                        <Card.Header className="to-do">In Progress . . .
-                            <TaskModal status="In-Prog"/>
-                        </Card.Header>
-                        <Card.Body>
-                            {seedData.filter(task => task.status === "In-Prog").map(task => {
-                                return (
-                                    <TaskCard task={task}/>
-                                )
-                            })}
-                        </Card.Body>
-                    </Card>
-                    <Card className="md-col-4">
-                        <Card.Header className="to-do">Done . . .
-                            <TaskModal status="Done"/>
-                        </Card.Header>
-                        <Card.Body>
-                            {seedData.filter(task => task.status === "Done").map(task => {
-                                return (
-                                    <TaskCard task={task}/>
-                                )
-                            })}
-                        </Card.Body>
-                    </Card>
+                        <Card className="md-col-4">
+                            <Card.Header className="to-do">To Do . . .
+                                <TaskModal status="To-Do" />
+                            </Card.Header>
+
+                            <Droppable droppableId="To-Do">
+                                {(provided) => (
+                                    <Card.Body
+                                        ref={provided.innerRef}
+                                        {...provided.droppableProps}
+                                    >
+                                        {seedData.filter(task => task.status === "To-Do").map((task, index) => {
+                                            return (
+                                                <TaskCard task={task} index={index} key={task.id} />
+                                            )
+                                        })}
+                                        {provided.placeholder}
+                                    </Card.Body>
+                                )}
+                            </Droppable>
+
+
+
+                        </Card>
+                        <Card className="md-col-4">
+                            <Card.Header className="to-do">In Progress . . .
+                                <TaskModal status="In-Prog" />
+                            </Card.Header>
+
+                            <Droppable droppableId="In-Prog">
+                                {(provided) => (
+                                    <Card.Body
+                                        ref={provided.innerRef}
+                                        {...provided.droppableProps}
+                                    >
+                                        {seedData.filter(task => task.status === "In-Prog").map((task, index) => {
+                                            return (
+                                                <TaskCard task={task} index={index} />
+                                            )
+                                        })}
+                                    </Card.Body>
+                                )}
+                            </Droppable>
+
+                        </Card>
+                        <Card className="md-col-4">
+                            <Card.Header className="to-do">Done . . .
+                                <TaskModal status="Done" />
+                            </Card.Header>
+
+                            <Droppable droppableId="Done">
+                                {(provided) => (
+                                    <Card.Body
+                                        ref={provided.innerRef}
+                                        {...provided.droppableProps}
+                                    >
+                                        {seedData.filter(task => task.status === "Done").map((task, index) => {
+                                            return (
+                                                <TaskCard task={task} index={index} />
+                                            )
+                                        })}
+                                    </Card.Body>
+                                )}
+                            </Droppable>
+
+                        </Card>
+
+                    </DragDropContext>
                 </Row>
             </Container>
         </div>
