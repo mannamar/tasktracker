@@ -99,9 +99,10 @@ export default function HomePage() {
         if (destination.droppableId === source.droppableId) {
             return;
         }
-
+        let taskIndex = seedData.findIndex(item => item.id === draggableId);
+        console.log(taskIndex);
         console.log("Moved to ", destination.droppableId);
-
+        seedData[taskIndex].status = destination.droppableId;
     }
 
     return (
