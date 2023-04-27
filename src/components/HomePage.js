@@ -5,6 +5,7 @@ import { Container, Row, Col, Card } from 'react-bootstrap';
 import TaskModal from './TaskModal'
 import { Link } from 'react-router-dom';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import TaskCard from './TaskCard';
 
 
 export default function HomePage() {
@@ -97,31 +98,13 @@ export default function HomePage() {
                 <Row className="field-spacing">
                     <Card className="md-col-4">
                         <Card.Header className="to-do">To Do . . .
-                            {/* <img className="plus" src={plus} /> */}
                             <TaskModal status="To-Do"/>
                         </Card.Header>
                         <Card.Body>
-                            {/* <Card className="task-card">
-                                <Card.Body className="task-card"> This is some text within a card body.
-                               
-                                </Card.Body>
-                            </Card>
-                            <Card className="task-card">
-                                <Card.Body className="task-card"> This is some text within a card body.</Card.Body>
-                            </Card>
-                            <Card className="task-card">
-                                <Card.Body className="task-card"> Walk Dog
-                                    <TaskModal isEdit={true} data={data}/>
-                                </Card.Body>
-                            </Card> */}
+                            
                             {seedData.filter(task => task.status === "To-Do").map(task => {
                                 return (
-                                    <Card className="task-card">
-                                        <Card.Body className="task-card d-flex justify-content-between">
-                                            <span className="taskTxt">{task.name}</span>
-                                            <TaskModal isEdit={true} data={task}/>
-                                        </Card.Body>
-                                    </Card>
+                                    <TaskCard task={task}/>
                                 )
                             })}
                             
@@ -131,36 +114,24 @@ export default function HomePage() {
                     </Card>
                     <Card className="md-col-4">
                         <Card.Header className="to-do">In Progress . . .
-                            {/* <img className="plus" src={plus} /> */}
                             <TaskModal status="In-Prog"/>
                         </Card.Header>
                         <Card.Body>
                             {seedData.filter(task => task.status === "In-Prog").map(task => {
                                 return (
-                                    <Card className="task-card">
-                                        <Card.Body className="task-card d-flex justify-content-between">
-                                            <span className="taskTxt">{task.name}</span>
-                                            <TaskModal isEdit={true} data={task}/>
-                                        </Card.Body>
-                                    </Card>
+                                    <TaskCard task={task}/>
                                 )
                             })}
                         </Card.Body>
                     </Card>
                     <Card className="md-col-4">
                         <Card.Header className="to-do">Done . . .
-                            {/* <img className="plus" src={plus} /> */}
                             <TaskModal status="Done"/>
                         </Card.Header>
                         <Card.Body>
                             {seedData.filter(task => task.status === "Done").map(task => {
                                 return (
-                                    <Card className="task-card">
-                                        <Card.Body className="task-card d-flex justify-content-between">
-                                            <span className="taskTxt">{task.name}</span>
-                                            <TaskModal isEdit={true} data={task}/>
-                                        </Card.Body>
-                                    </Card>
+                                    <TaskCard task={task}/>
                                 )
                             })}
                         </Card.Body>
