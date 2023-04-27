@@ -159,7 +159,7 @@ export default function HomePage() {
                                     >
                                         {seedData.filter(task => task.status === "In-Prog").map((task, index) => {
                                             return (
-                                                <TaskCard task={task} index={index} key={task.id} />
+                                                <TaskCard task={task} index={index} key={task.id} isAdmin={isAdmin}/>
                                             )
                                         })}
                                         {provided.placeholder}
@@ -181,7 +181,7 @@ export default function HomePage() {
                                     >
                                         {seedData.filter(task => task.status === "Done").map((task, index) => {
                                             return (
-                                                <TaskCard task={task} index={index} key={task.id} />
+                                                <TaskCard task={task} index={index} key={task.id} isAdmin={isAdmin}/>
                                             )
                                         })}
                                         {provided.placeholder}
