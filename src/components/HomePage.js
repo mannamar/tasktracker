@@ -1,10 +1,10 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./HomePage.css"
-import { Container, Row, Col, Card } from 'react-bootstrap';
+import { Container, Row, Card } from 'react-bootstrap';
 import TaskModal from './TaskModal'
 import { Link } from 'react-router-dom';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import TaskCard from './TaskCard';
 
 
@@ -89,7 +89,18 @@ export default function HomePage() {
         }
     ]
 
-    function onDragEnd() {
+    const onDragEnd = result => {
+        const { destination, source, draggableId } = result;
+
+        if (!destination) {
+            return;
+        }
+
+        if (destination.droppableId === source.droppableId) {
+            return;
+        }
+
+        console.log("Moved to ", destination.droppableId);
 
     }
 
@@ -145,9 +156,10 @@ export default function HomePage() {
                                     >
                                         {seedData.filter(task => task.status === "In-Prog").map((task, index) => {
                                             return (
-                                                <TaskCard task={task} index={index} />
+                                                <TaskCard task={task} index={index} key={task.id} />
                                             )
                                         })}
+                                        {provided.placeholder}
                                     </Card.Body>
                                 )}
                             </Droppable>
@@ -166,9 +178,10 @@ export default function HomePage() {
                                     >
                                         {seedData.filter(task => task.status === "Done").map((task, index) => {
                                             return (
-                                                <TaskCard task={task} index={index} />
+                                                <TaskCard task={task} index={index} key={task.id} />
                                             )
                                         })}
+                                        {provided.placeholder}
                                     </Card.Body>
                                 )}
                             </Droppable>
