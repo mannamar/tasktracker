@@ -64,7 +64,7 @@ export default function TaskModal(props) {
                     <Form>
 
                         <FloatingLabel className="mb-3 inpLabel" controlId="Name" label="Task Name">
-                            <Form.Control className="inp" type="text" placeholder="Task Name" value={name} onChange={(e) => setName(e.target.value)}/>
+                            <Form.Control disabled={!props.isAdmin} className="inp" type="text" placeholder="Task Name" value={name} onChange={(e) => setName(e.target.value)}/>
                         </FloatingLabel>
 
                         <FloatingLabel className="mb-3 inpLabel" controlId="Description" label="Task Description">

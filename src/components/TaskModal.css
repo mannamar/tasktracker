@@ -25,6 +25,10 @@ select {
     border: none;
 }
 
+.inp:disabled {
+    background-color: #5D5E76;
+}
+
 .inp::placeholder {
     color: #D6D6D6;
 }

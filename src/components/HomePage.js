@@ -89,7 +89,7 @@ export default function HomePage() {
         }
     ]
 
-    let isAdmin = false;
+    let isAdmin = true;
 
     const onDragEnd = result => {
         const { destination, source, draggableId } = result;
@@ -135,7 +135,7 @@ export default function HomePage() {
                                     >
                                         {seedData.filter(task => task.status === "To-Do").map((task, index) => {
                                             return (
-                                                <TaskCard task={task} index={index} key={task.id} />
+                                                <TaskCard task={task} index={index} key={task.id} isAdmin={isAdmin}/>
                                             )
                                         })}
                                         {provided.placeholder}
