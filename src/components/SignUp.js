@@ -2,13 +2,30 @@ import React from 'react'
 import './Login.css';
 import { Link } from 'react-router-dom';
 import validator from 'validator';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function SignUp() {
+    // public int Id { get; set; } 
+    // public string? UserName { get; set;}
+    // public string? Password { get; set;}
+
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [createUser, setCreateUser] = useState({});
+
+    useEffect(() => {
+        setCreateUser({
+            id: 0,
+            username: username,
+            password: password
+        });
+    }, [username, password]);
+
+    useEffect(() => {console.log(createUser)}, [createUser]);
+
+
     const [usernameError, setUsernameError] = useState('');
     const [validUsernameColor, setValidUsernameColor] = useState('red');
-
-    const [validPassword, setValidPassword] = useState(false);
 
     const [lengthError, setLengthError] = useState('');
     const [validLengthError, setValidLengthError] = useState('red');
@@ -25,56 +42,59 @@ export default function SignUp() {
     const [symbolError, setSymbolError] = useState('');
     const [validSymbolColor, setValidSymbolColor] = useState('red');
 
-    function hasLowerCase(str) {
-        for(let x = 0; x < str.length; x++) {
-            if(str.charAt(x) >= 'a' && str.charAt(x) <= 'z') {
+    const hasLowerCase= (str) => {
+        for(let i = 0; i < str.length; i++) {
+            if(str.charAt(i) >= 'a' && str.charAt(i) <= 'z') {
                 return true;
             }
         }
         return false;
     }
 
-    function hasUpperCase(str) {
-        for(let x = 0; x < str.length; x++) {
-            if(str.charAt(x) >= 'A' && str.charAt(x) <= 'Z') {
+    const hasUpperCase = (str) => {
+        for(let i = 0; i < str.length; i++) {
+            if(str.charAt(i) >= 'A' && str.charAt(i) <= 'Z') {
                 return true;
             }
         }
         return false;
     }
 
-    function hasNumber(str) {
-        for(let x = 0; x < str.length; x++) {
-            if(str.charAt(x) >= '0' && str.charAt(x) <= '9') {
+    const hasNumber = (str) => {
+        for(let i = 0; i < str.length; i++) {
+            if(str.charAt(i) >= '0' && str.charAt(i) <= '9') {
                 return true;
             }
         }
         return false;
     }
 
-    function hasSymbol(str) {
-        for(let x = 0; x < str.length; x++) {
-            if((str.charAt(x) >= '!' && str.charAt(x) <= '/') || (str.charAt(x) >= ':' && str.charAt(x) <= '@') || (str.charAt(x) >= '[' && str.charAt(x) <= '`') || (str.charAt(x) >= '{' && str.charAt(x) <= '~')) {
-                return true;
+    const hasSymbol = (str) => {
+        for(let i = 0; i < str.length; i++) {
+            if((str.charAt(i) >= '!' && str.charAt(i) <= '/') || (str.charAt(i) >= ':' && str.charAt(i) <= '@') || (str.charAt(i) >= '[' && str.charAt(i) <= '`')
+                || (str.charAt(i) >= '{' && str.charAt(i) <= '~')) {
+                    return true;
             }
         }
         return false;
     }
 
     const validateUsername = (e) => {
-        var username = e.target.value;
+        let username = e.target.value;
   
         if (validator.isLength(username, {min: 3, max: undefined})) {
             setUsernameError('Valid Username');
             setValidUsernameColor('green');
+            setUsername(username);
         } else {
             setUsernameError('Username must be minimum 3 Characters');
             setValidUsernameColor('red');
+            setUsername('');
         }
     }
 
     const validatePassword = (e) => {
-        var password = e.target.value;
+        let password = e.target.value;
         
         // Validate Length of Minimum 8 Characters
         if (validator.isLength(password, {min: 8, max: undefined})) {
@@ -122,9 +142,9 @@ export default function SignUp() {
         }
 
         if (validator.isStrongPassword(password)) {
-            setValidPassword(true);
+            setPassword(password);
         } else {
-            setValidPassword(false);
+            setPassword('');
         }
     }
 
@@ -164,7 +184,7 @@ export default function SignUp() {
                         </Link>
                         <div className='register-here'>
                             <p className='register-here-text'>Already have an account?</p>
-                            <Link to={'/Login'} className='register-here-link'>Login Here</Link>
+                            <Link to='/Login' className='register-here-link'>Login Here</Link>
                         </div>
                     </div>
                 </div>
