@@ -22,7 +22,7 @@ export default function HomePage() {
 
     let seedData = [
         {
-            id: "1",
+            id: 1,
             name: "Walk Dog",
             description: "Walk Dog after lunch",
             tag: "Pets",
@@ -33,7 +33,7 @@ export default function HomePage() {
             endDate: "2023-04-26"
         },
         {
-            id: "2",
+            id: 2,
             name: "Feed Cat",
             description: "Make sure he gets enough protein",
             tag: "Pets",
@@ -44,7 +44,7 @@ export default function HomePage() {
             endDate: "2023-04-26"
         },
         {
-            id: "3",
+            id: 3,
             name: "Practice Guitar",
             description: "Learn that gnarly Hendrix riff",
             tag: "Music",
@@ -55,7 +55,7 @@ export default function HomePage() {
             endDate: "2023-04-26"
         },
         {
-            id: "4",
+            id: 4,
             name: "Plan Vacation",
             description: "Figure out if we're going to Hawaii or Tahiti",
             tag: "Vacay",
@@ -66,7 +66,7 @@ export default function HomePage() {
             endDate: "2023-04-30"
         },
         {
-            id: "5",
+            id: 5,
             name: "Book Flights",
             description: "Make sure everyone gets a window seat",
             tag: "Vacay",
@@ -77,7 +77,7 @@ export default function HomePage() {
             endDate: "2023-05-30"
         },
         {
-            id: "6",
+            id: 6,
             name: "Smash Tournament",
             description: "Kick butt and spam down-B",
             tag: "E-Sports",
@@ -99,7 +99,7 @@ export default function HomePage() {
         if (destination.droppableId === source.droppableId) {
             return;
         }
-        let taskIndex = seedData.findIndex(item => item.id === draggableId);
+        let taskIndex = seedData.findIndex(item => item.id === Number(draggableId));
         console.log(taskIndex);
         console.log("Moved to ", destination.droppableId);
         seedData[taskIndex].status = destination.droppableId;

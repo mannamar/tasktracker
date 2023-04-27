@@ -5,7 +5,7 @@ import { Draggable } from 'react-beautiful-dnd';
 
 export default function TaskCard(props) {
     return (
-        <Draggable draggableId={props.task.id} index={props.index}>
+        <Draggable draggableId={String(props.task.id)} index={props.index}>
             {provided => (
                 <Card className="task-card"
                 {...provided.draggableProps}
