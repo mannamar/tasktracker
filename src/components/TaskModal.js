@@ -58,7 +58,7 @@ export default function TaskModal(props) {
 
             <Modal className="" show={show} onHide={handleClose} data-bs-theme="dark">
                 <Modal.Header closeButton>
-                    <Modal.Title className="modTitle">Add Task</Modal.Title>
+                    <Modal.Title className="modTitle">{props.isEdit ? "Edit" : "Add"} Task</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form>
@@ -150,12 +150,12 @@ export default function TaskModal(props) {
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                        Close
-                    </Button>
-                    <Button variant="primary" onClick={handleSave}>
-                        Save Changes
-                    </Button>
+                    <button className={props.isEdit ? "delBtn" : "d-none"} variant="secondary" onClick={handleClose}>
+                        Delete
+                    </button>
+                    <button className="addBtn" variant="primary" onClick={handleSave}>
+                        {props.isEdit ? "Save Changes" : "Add Task"}
+                    </button>
                 </Modal.Footer>
             </Modal>
         </>

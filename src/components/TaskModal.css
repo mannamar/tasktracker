@@ -53,3 +53,23 @@ select {
 .taskBtn:hover {
     cursor: pointer;
 }
+
+.addBtn {
+    width: 150px;
+    height: 45px;
+    background-color: #59747B;
+    border-radius: 15px;
+    font-size: 20px;
+    color: white;
+    border: none;
+}
+
+.delBtn {
+    width: 150px;
+    height: 45px;
+    background-color: #9b2929;
+    border-radius: 15px;
+    font-size: 20px;
+    color: white;
+    border: none;
+}
