@@ -89,6 +89,8 @@ export default function HomePage() {
         }
     ]
 
+    let isAdmin = false;
+
     const onDragEnd = result => {
         const { destination, source, draggableId } = result;
 
@@ -122,7 +124,7 @@ export default function HomePage() {
 
                         <Card className="md-col-4">
                             <Card.Header className="to-do">To Do . . .
-                                <TaskModal status="To-Do" />
+                                <TaskModal status="To-Do" isAdmin={isAdmin}/>
                             </Card.Header>
 
                             <Droppable droppableId="To-Do">
@@ -146,7 +148,7 @@ export default function HomePage() {
                         </Card>
                         <Card className="md-col-4">
                             <Card.Header className="to-do">In Progress . . .
-                                <TaskModal status="In-Prog" />
+                                <TaskModal status="In-Prog" isAdmin={isAdmin}/>
                             </Card.Header>
 
                             <Droppable droppableId="In-Prog">
@@ -168,7 +170,7 @@ export default function HomePage() {
                         </Card>
                         <Card className="md-col-4">
                             <Card.Header className="to-do">Done . . .
-                                <TaskModal status="Done" />
+                                <TaskModal status="Done" isAdmin={isAdmin}/>
                             </Card.Header>
 
                             <Droppable droppableId="Done">
