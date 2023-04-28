@@ -75,7 +75,7 @@ export default function TaskModal(props) {
                 result = await addTask(item);
             }
             if (result) {
-
+                props.setBool(!props.bool);
             } else {
                 alert(`Blog Items was not ${props.isEdit ? 'Updated' : 'Added'}`)
             }

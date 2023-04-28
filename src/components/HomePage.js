@@ -11,6 +11,7 @@ import { getAllTasks, getTaskItemById, updateTask } from '../services/taskServic
 
 export default function HomePage() {
     const [taskItems, setTaskItems] = useState([]);
+    const [needsRefresh, setNeedsRefresh] = useState(true);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -19,7 +20,7 @@ export default function HomePage() {
             console.log(res);
         };
         fetchData();
-    }, [])
+    }, [needsRefresh])
 
     let seedData = [
         {
@@ -97,7 +98,7 @@ export default function HomePage() {
 
                         <Card className="md-col-4">
                             <Card.Header className="to-do">To Do . . .
-                                <TaskModal status="To-Do" isAdmin={isAdmin}/>
+                                <TaskModal status="To-Do" isAdmin={isAdmin} bool={needsRefresh} setBool={setNeedsRefresh}/>
                             </Card.Header>
 
                             <Droppable droppableId="To-Do">
@@ -121,7 +122,7 @@ export default function HomePage() {
                         </Card>
                         <Card className="md-col-4">
                             <Card.Header className="to-do">In Progress . . .
-                                <TaskModal status="In-Prog" isAdmin={isAdmin}/>
+                                <TaskModal status="In-Prog" isAdmin={isAdmin} bool={needsRefresh} setBool={setNeedsRefresh}/>
                             </Card.Header>
 
                             <Droppable droppableId="In-Prog">
@@ -143,7 +144,7 @@ export default function HomePage() {
                         </Card>
                         <Card className="md-col-4">
                             <Card.Header className="to-do">Done . . .
-                                <TaskModal status="Done" isAdmin={isAdmin}/>
+                                <TaskModal status="Done" isAdmin={isAdmin} bool={needsRefresh} setBool={setNeedsRefresh}/>
                             </Card.Header>
 
                             <Droppable droppableId="Done">
