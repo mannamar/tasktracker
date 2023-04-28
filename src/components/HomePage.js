@@ -6,7 +6,7 @@ import TaskModal from './TaskModal'
 import { Link } from 'react-router-dom';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import TaskCard from './TaskCard';
-import { getAllTasks } from '../services/taskService';
+import { getAllTasks, getTaskItemById, updateTask } from '../services/taskService';
 
 
 export default function HomePage() {
@@ -51,7 +51,8 @@ export default function HomePage() {
         }
     ]
 
-    const onDragEnd = result => {
+
+    const onDragEnd = async (result) => {
         const { destination, source, draggableId } = result;
 
         if (!destination) {
@@ -64,6 +65,21 @@ export default function HomePage() {
         let taskIndex = taskItems.findIndex(item => item.id === Number(draggableId));
         console.log(taskIndex);
         console.log("Moved to ", destination.droppableId);
+        let task = await getTaskItemById(Number(draggableId));
+        console.log(task);
+        task.isCompleted = destination.droppableId;
+        [taskIndex].status = destination.droppableId;
+        let updatedTasks = taskItems.slice();
+        updatedTasks.splice(taskIndex, 1, task);
+        setTaskItems(updatedTasks); // Slow
+
+        // taskItems[taskIndex].status = destination.droppableId;
+
+        let response = await updateTask(task);
+        if (response) {
+            // let res = await getAllTasks();
+            // setTaskItems(res);
+        }
         // seedData[taskIndex].status = destination.droppableId;
         // Need to add logic for drag to new category
     }

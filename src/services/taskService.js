@@ -43,4 +43,10 @@ async function updateTask(task) {
     return data;
 }
 
-export { getAllTasks, addTask, updateTask };
+async function getTaskItemById(taskId) {
+    let res = await fetch(`https://taskmanagersprint.azurewebsites.net/Task/GetBlogItemById/${taskId}`);
+    let data = res.json();
+    return data;
+}
+
+export { getAllTasks, addTask, updateTask, getTaskItemById };
