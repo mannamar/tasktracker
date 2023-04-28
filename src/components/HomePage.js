@@ -102,7 +102,7 @@ export default function HomePage() {
         if (destination.droppableId === source.droppableId) {
             return;
         }
-        let taskIndex = seedData.findIndex(item => item.id === Number(draggableId));
+        let taskIndex = taskItems.findIndex(item => item.id === Number(draggableId));
         console.log(taskIndex);
         console.log("Moved to ", destination.droppableId);
         seedData[taskIndex].status = destination.droppableId;
@@ -134,7 +134,7 @@ export default function HomePage() {
                                         ref={provided.innerRef}
                                         {...provided.droppableProps}
                                     >
-                                        {seedData.filter(task => task.status === "To-Do").map((task, index) => {
+                                        {taskItems.filter(task => task.isCompleted === "To-Do").map((task, index) => {
                                             return (
                                                 <TaskCard task={task} index={index} key={task.id} isAdmin={isAdmin}/>
                                             )
@@ -158,7 +158,7 @@ export default function HomePage() {
                                         ref={provided.innerRef}
                                         {...provided.droppableProps}
                                     >
-                                        {seedData.filter(task => task.status === "In-Prog").map((task, index) => {
+                                        {taskItems.filter(task => task.isCompleted === "In-Prog").map((task, index) => {
                                             return (
                                                 <TaskCard task={task} index={index} key={task.id} isAdmin={isAdmin}/>
                                             )
@@ -180,7 +180,7 @@ export default function HomePage() {
                                         ref={provided.innerRef}
                                         {...provided.droppableProps}
                                     >
-                                        {seedData.filter(task => task.status === "Done").map((task, index) => {
+                                        {taskItems.filter(task => task.isCompleted === "Done").map((task, index) => {
                                             return (
                                                 <TaskCard task={task} index={index} key={task.id} isAdmin={isAdmin}/>
                                             )

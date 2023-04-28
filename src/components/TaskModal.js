@@ -23,12 +23,12 @@ export default function TaskModal(props) {
         let today = new Date().toISOString().split('T')[0];
         setShow(true);
         if (props.isEdit) {
-            setName(props.data.name);
+            setName(props.data.taskName);
             setDescription(props.data.description);
-            setTag(props.data.tag);
-            setAssignee(props.data.assignee);
+            setTag(props.data.tags);
+            setAssignee(props.data.assigned);
             setPriority(props.data.priority);
-            setStatus(props.data.status);
+            setStatus(props.data.isCompleted);
             setDate(props.data.date);
             setEndDate(props.data.endDate);
         } else {
