@@ -64,7 +64,18 @@ export default function HomePage() {
         let task = await getTaskItemById(Number(draggableId));
         console.log(task);
         task.isCompleted = destination.droppableId;
+        [taskIndex].status = destination.droppableId;
+        let updatedTasks = taskItems.slice();
+        updatedTasks.splice(taskIndex, 1, task);
+        setTaskItems(updatedTasks); // Slow
+
+        // taskItems[taskIndex].status = destination.droppableId;
+
         let response = await updateTask(task);
+        if (response) {
+            // let res = await getAllTasks();
+            // setTaskItems(res);
+        }
         // seedData[taskIndex].status = destination.droppableId;
         // Need to add logic for drag to new category
     }
