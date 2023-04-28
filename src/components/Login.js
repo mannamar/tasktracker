@@ -2,7 +2,7 @@ import React from 'react';
 import './Login.css';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { LoginService } from '../services/DataService';
+import { LoginService, GetUserInfo } from '../services/DataService';
 import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
@@ -10,6 +10,7 @@ export default function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [loginUser, setLoginUser] = useState({});
+    const [token, setToken] = useState('');
 
     useEffect(() => {
         setLoginUser({
@@ -27,11 +28,19 @@ export default function Login() {
     }
 
     const SubmitLogin = async () => {
-        let token = await LoginService(loginUser);
+        setToken(await LoginService(loginUser));
+    }
+
+    const LoginInfo = async () => {
+        localStorage.setItem('userInfo', JSON.stringify(await GetUserInfo(username)));
+    }
+
+    useEffect(() => {
         if (token.token != null) {
+            LoginInfo();
             navigate('/');
         }
-    }
+    }, [token]);
 
 
     return (
