@@ -24,7 +24,7 @@ export default function SignUp() {
         });
     }, [username, password]);
 
-    useEffect(() => {console.log(createUser)}, [createUser]);
+    // useEffect(() => {console.log(createUser)}, [createUser]);
 
 
     const [usernameError, setUsernameError] = useState('');
