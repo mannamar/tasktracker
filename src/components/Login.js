@@ -28,7 +28,6 @@ export default function Login() {
 
     const SubmitLogin = async () => {
         let token = await LoginService(loginUser);
-        console.log(token);
         if (token.token != null) {
             navigate('/');
         }

@@ -54,6 +54,19 @@
     color: #D6D6D6;
 }
 
+.admin-label {
+    font-size: 12px;
+    margin-top: 10px;
+    margin-bottom: 0;
+    color: white;
+}
+
+.admin-btn {
+    width: 32px;
+    height: 32px;
+    margin-top: 5px;
+}
+
 .login-btn {
     width: 150px;
     height: 45px;
