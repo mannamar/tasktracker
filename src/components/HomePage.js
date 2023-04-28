@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./HomePage.css"
 import { Container, Row, Card } from 'react-bootstrap';
@@ -6,19 +6,20 @@ import TaskModal from './TaskModal'
 import { Link } from 'react-router-dom';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import TaskCard from './TaskCard';
+import { getAllTasks } from '../services/taskService';
 
 
 export default function HomePage() {
-    let data = {
-        name: "Walk Dog",
-        description: "Walk Dog after lunch",
-        tag: "Pets",
-        assignee: "Lerissa",
-        priority: "high",
-        status: "In-Prog",
-        date: "2023-04-25",
-        endDate: "2023-04-26"
-    }
+    const [taskItems, setTaskItems] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            let res = await getAllTasks();
+            setTaskItems(res);
+            console.log(res);
+        };
+        fetchData();
+    }, [])
 
     let seedData = [
         {
@@ -42,50 +43,6 @@ export default function HomePage() {
             status: "To-Do",
             date: "2023-04-26",
             endDate: "2023-04-26"
-        },
-        {
-            id: 3,
-            name: "Practice Guitar",
-            description: "Learn that gnarly Hendrix riff",
-            tag: "Music",
-            assignee: "Lerissa",
-            priority: "Med",
-            status: "To-Do",
-            date: "2023-04-26",
-            endDate: "2023-04-26"
-        },
-        {
-            id: 4,
-            name: "Plan Vacation",
-            description: "Figure out if we're going to Hawaii or Tahiti",
-            tag: "Vacay",
-            assignee: "John",
-            priority: "low",
-            status: "In-Prog",
-            date: "2023-04-26",
-            endDate: "2023-04-30"
-        },
-        {
-            id: 5,
-            name: "Book Flights",
-            description: "Make sure everyone gets a window seat",
-            tag: "Vacay",
-            assignee: "",
-            priority: "low",
-            status: "To-Do",
-            date: "2023-04-26",
-            endDate: "2023-05-30"
-        },
-        {
-            id: 6,
-            name: "Smash Tournament",
-            description: "Kick butt and spam down-B",
-            tag: "E-Sports",
-            assignee: "Dan",
-            priority: "low",
-            status: "Done",
-            date: "2023-03-30",
-            endDate: "2023-03-30"
         }
     ]
 
@@ -101,7 +58,7 @@ export default function HomePage() {
         if (destination.droppableId === source.droppableId) {
             return;
         }
-        let taskIndex = seedData.findIndex(item => item.id === Number(draggableId));
+        let taskIndex = taskItems.findIndex(item => item.id === Number(draggableId));
         console.log(taskIndex);
         console.log("Moved to ", destination.droppableId);
         seedData[taskIndex].status = destination.droppableId;
@@ -133,7 +90,7 @@ export default function HomePage() {
                                         ref={provided.innerRef}
                                         {...provided.droppableProps}
                                     >
-                                        {seedData.filter(task => task.status === "To-Do").map((task, index) => {
+                                        {taskItems.filter(task => task.isCompleted === "To-Do").map((task, index) => {
                                             return (
                                                 <TaskCard task={task} index={index} key={task.id} isAdmin={isAdmin}/>
                                             )
@@ -157,7 +114,7 @@ export default function HomePage() {
                                         ref={provided.innerRef}
                                         {...provided.droppableProps}
                                     >
-                                        {seedData.filter(task => task.status === "In-Prog").map((task, index) => {
+                                        {taskItems.filter(task => task.isCompleted === "In-Prog").map((task, index) => {
                                             return (
                                                 <TaskCard task={task} index={index} key={task.id} isAdmin={isAdmin}/>
                                             )
@@ -179,7 +136,7 @@ export default function HomePage() {
                                         ref={provided.innerRef}
                                         {...provided.droppableProps}
                                     >
-                                        {seedData.filter(task => task.status === "Done").map((task, index) => {
+                                        {taskItems.filter(task => task.isCompleted === "Done").map((task, index) => {
                                             return (
                                                 <TaskCard task={task} index={index} key={task.id} isAdmin={isAdmin}/>
                                             )
