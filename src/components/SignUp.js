@@ -3,7 +3,7 @@ import "./Login.css";
 import { Link } from "react-router-dom";
 import validator from "validator";
 import { useState, useEffect } from "react";
-import { CreateUserAccount } from "../services/DataService";
+import { CreateUserAccount, GetUserInfo } from "../services/DataService";
 import { useNavigate } from "react-router-dom";
 import { ToggleButton } from "react-bootstrap";
 
@@ -17,6 +17,7 @@ export default function SignUp() {
     const [password, setPassword] = useState("");
     const [isAdmin, setIsAdmin] = useState(false);
     const [createUser, setCreateUser] = useState({});
+    const [isCreated, setIsCreated] = useState(false);
 
     useEffect(() => {
         setCreateUser({
@@ -158,14 +159,19 @@ export default function SignUp() {
     };
 
     const SubmitClick = async () => {
-        let isCreated = await CreateUserAccount(createUser);
-
-        if (isCreated) {
-            navigate("/");
-        } else {
-            alert("Error account not created");
-        }
+        setIsCreated(await CreateUserAccount(createUser));
     };
+
+    const LoginInfo = async () => {
+        localStorage.setItem('userInfo', JSON.stringify(await GetUserInfo(username)));
+    }
+
+    useEffect(() => {
+        if (isCreated) {
+            LoginInfo();
+            navigate("/");
+        }
+    }, [isCreated]);
 
     return (
         <>

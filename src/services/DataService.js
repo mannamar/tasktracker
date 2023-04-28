@@ -18,6 +18,12 @@ const LoginService = async (loginUser) => {
     return data;
 }
 
+const GetUserInfo = async (username) => {
+    const response = await fetch(`https://taskmanagersprint.azurewebsites.net/User/userByUsername/${username}`)
+    const data = await response.json();
+    return data;
+}
+
 const CreateUserAccount = async (createdUser) => {
     const response = await fetch('https://taskmanagersprint.azurewebsites.net/User/AddUser', {
         method: 'POST',
@@ -35,4 +41,4 @@ const CreateUserAccount = async (createdUser) => {
 }
 
 
-export { LoginService, CreateUserAccount }
+export { LoginService, GetUserInfo, CreateUserAccount }
