@@ -6,19 +6,10 @@ import TaskModal from './TaskModal'
 import { Link } from 'react-router-dom';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import TaskCard from './TaskCard';
+import { getAllTasks } from '../services/taskService';
 
 
 export default function HomePage() {
-    let data = {
-        name: "Walk Dog",
-        description: "Walk Dog after lunch",
-        tag: "Pets",
-        assignee: "Lerissa",
-        priority: "high",
-        status: "In-Prog",
-        date: "2023-04-25",
-        endDate: "2023-04-26"
-    }
 
     let seedData = [
         {
@@ -49,7 +40,7 @@ export default function HomePage() {
             description: "Learn that gnarly Hendrix riff",
             tag: "Music",
             assignee: "Lerissa",
-            priority: "Med",
+            priority: "med",
             status: "To-Do",
             date: "2023-04-26",
             endDate: "2023-04-26"

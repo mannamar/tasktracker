@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Row, Col, Button, Modal, Form, FloatingLabel } from 'react-bootstrap';
 import { Plus, DotsThree } from '@phosphor-icons/react';
 import './TaskModal.css';
+import { addTask, updateTask } from '../services/taskService';
 
 export default function TaskModal(props) {
 
@@ -36,15 +37,44 @@ export default function TaskModal(props) {
             setDescription("");
             setTag("");
             setAssignee("");
-            setPriority("");
+            setPriority("Low");
             setStatus(props.status);
             setDate(today);
             setEndDate(today);
         }
     }
-    const handleSave = () => {
-        setShow(false);
-        console.log(date);
+
+    const handleSave = async () => {
+        if (name) {
+            const item = {
+                "id" : 0,
+                "TaskName" : name,
+                "UserID" : "1",
+                "PublisherName" : "Dan",
+                "Description" : description,
+                "Date" : date,
+                "Priority" : priority,
+                "Assigned" : assignee,
+                "IsCompleted" : status,
+                "IsDeleted" : false,
+                "EndDate" : endDate,
+                "isAdded" : true
+            }
+            console.log(item);
+            handleClose();
+            let result = false;
+            if (props.isEdit) {
+
+            } else {
+                console.log('Adding task');
+                result = await addTask(item);
+            }
+            if (result) {
+
+            } else {
+                alert(`Blog Items was not ${props.isEdit ? 'Updated' : 'Added'}`)
+            }
+        }
     }
 
 
@@ -52,8 +82,8 @@ export default function TaskModal(props) {
         <>
             {
                 props.isEdit ?
-                <DotsThree className="taskBtn " size={24} color="#FFFFFF" onClick={handleShow} /> :
-                <Plus className={props.isAdmin ? "taskBtn" : "d-none"} size={24} color="#FFFFFF" onClick={handleShow} />
+                    <DotsThree className="taskBtn " size={24} color="#FFFFFF" onClick={handleShow} /> :
+                    <Plus className={props.isAdmin ? "taskBtn" : "d-none"} size={24} color="#FFFFFF" onClick={handleShow} />
             }
 
             <Modal className="" show={show} onHide={handleClose} data-bs-theme="dark">
@@ -64,11 +94,11 @@ export default function TaskModal(props) {
                     <Form>
 
                         <FloatingLabel className="mb-3 inpLabel" controlId="Name" label="Task Name">
-                            <Form.Control disabled={!props.isAdmin} className="inp" type="text" placeholder="Task Name" value={name} onChange={(e) => setName(e.target.value)}/>
+                            <Form.Control disabled={!props.isAdmin} className="inp" type="text" placeholder="Task Name" value={name} onChange={(e) => setName(e.target.value)} />
                         </FloatingLabel>
 
                         <FloatingLabel className="mb-3 inpLabel" controlId="Description" label="Task Description">
-                            <Form.Control disabled={!props.isAdmin} className="inp descInp" as="textarea" placeholder="Task Description" value={description} onChange={(e) => setDescription(e.target.value)}/>
+                            <Form.Control disabled={!props.isAdmin} className="inp descInp" as="textarea" placeholder="Task Description" value={description} onChange={(e) => setDescription(e.target.value)} />
                         </FloatingLabel>
 
 
@@ -76,7 +106,7 @@ export default function TaskModal(props) {
 
                             <Col xs={6}>
                                 <FloatingLabel className="mb-3 inpLabel" controlId="Tag" label="Tag">
-                                    <Form.Control disabled={!props.isAdmin} className="inp" type="text" placeholder="Tag" value={tag} onChange={(e) => setTag(e.target.value)}/>
+                                    <Form.Control disabled={!props.isAdmin} className="inp" type="text" placeholder="Tag" value={tag} onChange={(e) => setTag(e.target.value)} />
                                 </FloatingLabel>
                             </Col>
 
@@ -92,7 +122,7 @@ export default function TaskModal(props) {
                             </Col>
 
                         </Row>
-                            
+
                         <Row>
 
                             <Col xs={6}>
@@ -105,7 +135,7 @@ export default function TaskModal(props) {
                                         <option value="High">High</option>
                                     </Form.Select>
                                 </FloatingLabel>
-                                
+
                             </Col>
 
                             <Col xs={6}>
@@ -129,7 +159,7 @@ export default function TaskModal(props) {
 
                                 <FloatingLabel className="mb-3 inpLabel" controlId="Start" label="Start">
                                     {/* <Form.Label>Start Date</Form.Label> */}
-                                    <Form.Control disabled={!props.isAdmin} className="inp" type="date" placeholder="Start Date" value={date} onChange={(e) => setDate(e.target.value)}/>
+                                    <Form.Control disabled={!props.isAdmin} className="inp" type="date" placeholder="Start Date" value={date} onChange={(e) => setDate(e.target.value)} />
                                 </FloatingLabel>
 
                             </Col>
@@ -138,7 +168,7 @@ export default function TaskModal(props) {
 
                                 <FloatingLabel className="mb-3 inpLabel" controlId="End" label="End">
                                     {/* <Form.Label>End Date</Form.Label> */}
-                                    <Form.Control disabled={!props.isAdmin} className="inp" type="date" placeholder="End Date" value={endDate} onChange={(e) => setEndDate(e.target.value)}/>
+                                    <Form.Control disabled={!props.isAdmin} className="inp" type="date" placeholder="End Date" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
                                 </FloatingLabel>
 
                             </Col>
