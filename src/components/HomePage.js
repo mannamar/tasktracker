@@ -27,15 +27,22 @@ export default function HomePage() {
     }, [needsRefresh])
 
     useEffect(() => {
-        setUserInfo(JSON.parse(localStorage.getItem('userInfo')));
-    }, []);
-
-    useEffect(() => {
-        if (userInfo.isAdmin == null) {
+        if(JSON.parse(localStorage.getItem('userInfo')) === null) {
             setUserInfo({isAdmin: false});
             navigate('/Login');
+        } else {
+            setUserInfo(JSON.parse(localStorage.getItem('userInfo')));
         }
+        
     }, []);
+
+    // useEffect(() => {
+    //     console.log(userInfo);
+    //     if (userInfo == {}) {
+    //         setUserInfo({isAdmin: false});
+    //         navigate('/Login');
+    //     }
+    // }, [userInfo]);
 
     let seedData = [
         {
