@@ -61,7 +61,8 @@ export default function HomePage() {
         let taskIndex = taskItems.findIndex(item => item.id === Number(draggableId));
         console.log(taskIndex);
         console.log("Moved to ", destination.droppableId);
-        seedData[taskIndex].status = destination.droppableId;
+        // seedData[taskIndex].status = destination.droppableId;
+        // Need to add logic for drag to new category
     }
 
     return (

@@ -16,6 +16,7 @@ export default function TaskModal(props) {
     const [status, setStatus] = useState("");
     const [date, setDate] = useState("");
     const [endDate, setEndDate] = useState("");
+    const [id, setId] = useState(0);
 
     const handleClose = () => setShow(false);
     const handleShow = () => {
@@ -31,6 +32,7 @@ export default function TaskModal(props) {
             setStatus(props.data.isCompleted);
             setDate(props.data.date);
             setEndDate(props.data.endDate);
+            setId(props.data.id);
         } else {
             setName("");
             setDescription("");
@@ -40,30 +42,33 @@ export default function TaskModal(props) {
             setStatus(props.status);
             setDate(today);
             setEndDate(today);
+            setId(0);
         }
     }
 
     const handleSave = async () => {
         if (name) {
             const item = {
-                "id" : 0,
-                "TaskName" : name,
-                "UserID" : "1",
-                "PublisherName" : "An",
-                "Description" : description,
-                "Date" : date,
-                "Priority" : priority,
-                "Assigned" : assignee,
-                "IsCompleted" : status,
-                "IsDeleted" : false,
-                "EndDate" : endDate,
-                "isAdded" : true,
-                "Tags" : tag
+                Id : id,
+                TaskName : name,
+                UserID : "1",
+                PublisherName : "An",
+                Description : description,
+                Date : date,
+                Priority : priority,
+                Assigned : assignee,
+                IsCompleted : status,
+                IsDeleted : false,
+                EndDate : endDate,
+                isAdded : true,
+                Tags : tag
             }
             console.log(item);
             handleClose();
             let result = false;
             if (props.isEdit) {
+                console.log('Updating task')
+                result = await updateTask(item);
 
             } else {
                 console.log('Adding task');
@@ -74,6 +79,17 @@ export default function TaskModal(props) {
             } else {
                 alert(`Blog Items was not ${props.isEdit ? 'Updated' : 'Added'}`)
             }
+        }
+    }
+
+    const handleDelete = async (item) => {
+        item.isDeleted = true;
+        handleClose();
+        let result = await updateTask(item);
+        if (result) {
+
+        } else {
+            alert(`Blog Items was not deleted`)
         }
     }
 
@@ -180,7 +196,7 @@ export default function TaskModal(props) {
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <button className={(props.isEdit && props.isAdmin) ? "delBtn" : "d-none"} variant="secondary" onClick={handleClose}>
+                    <button className={(props.isEdit && props.isAdmin) ? "delBtn" : "d-none"} variant="secondary" onClick={() => handleDelete(props.data)}>
                         Delete
                     </button>
                     <button className="addBtn" variant="primary" onClick={handleSave}>

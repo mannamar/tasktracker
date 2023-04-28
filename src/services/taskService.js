@@ -24,13 +24,13 @@ async function addTask(task) {
     return data;
 }
 
-async function updateTask(blogItem) {
-    const response = await fetch('https://taskmanagersprint.azurewebsites.net/Task/UpdateTaskitem', {
+async function updateTask(task) {
+    const response = await fetch('https://taskmanagersprint.azurewebsites.net/Task/UpdateTaskItem', {
         method: "POST",
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(blogItem)
+        body: JSON.stringify(task)
     });
 
     if(!response.ok) {
