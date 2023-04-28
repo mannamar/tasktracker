@@ -225,17 +225,19 @@ export default function SignUp() {
                             <li style={{ color: `${validNumberColor}` }}>{numberError}</li>
                             <li style={{ color: `${validSymbolColor}` }}>{symbolError}</li>
                         </ul>
+                        <div className="admin-check">
                         <p className="admin-label">Admin</p>
                         <ToggleButton
                             className="admin-btn"
                             id="toggle-check"
                             type="checkbox"
-                            variant="outline-primary"
+                            variant="outline-light"
                             checked={isAdmin}
                             value="1"
                             onChange={(e) => setIsAdmin(e.currentTarget.checked)}
                         >
                         </ToggleButton>
+                        </div >
                         <button className="login-btn" onClick={SubmitClick}>
                             Sign Up
                         </button>
