@@ -91,7 +91,7 @@ export default function HomePage() {
                                         ref={provided.innerRef}
                                         {...provided.droppableProps}
                                     >
-                                        {taskItems.filter(task => task.isCompleted === "To-Do").map((task, index) => {
+                                        {taskItems.filter(task => task.isCompleted === "To-Do").filter(task => task.isDeleted === false).map((task, index) => {
                                             return (
                                                 <TaskCard task={task} index={index} key={task.id} isAdmin={isAdmin}/>
                                             )
@@ -115,7 +115,7 @@ export default function HomePage() {
                                         ref={provided.innerRef}
                                         {...provided.droppableProps}
                                     >
-                                        {taskItems.filter(task => task.isCompleted === "In-Prog").map((task, index) => {
+                                        {taskItems.filter(task => task.isCompleted === "In-Prog").filter(task => task.isDeleted === false).map((task, index) => {
                                             return (
                                                 <TaskCard task={task} index={index} key={task.id} isAdmin={isAdmin}/>
                                             )
@@ -137,7 +137,7 @@ export default function HomePage() {
                                         ref={provided.innerRef}
                                         {...provided.droppableProps}
                                     >
-                                        {taskItems.filter(task => task.isCompleted === "Done").map((task, index) => {
+                                        {taskItems.filter(task => task.isCompleted === "Done").filter(task => task.isDeleted === false).map((task, index) => {
                                             return (
                                                 <TaskCard task={task} index={index} key={task.id} isAdmin={isAdmin}/>
                                             )
