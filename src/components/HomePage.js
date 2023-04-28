@@ -7,12 +7,15 @@ import { Link } from 'react-router-dom';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import TaskCard from './TaskCard';
 import { getAllTasks, getTaskItemById, updateTask } from '../services/taskService';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function HomePage() {
     const [taskItems, setTaskItems] = useState([]);
     const [needsRefresh, setNeedsRefresh] = useState(true);
     const [userInfo, setUserInfo] = useState({});
+
+    let navigate = useNavigate();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -25,6 +28,13 @@ export default function HomePage() {
 
     useEffect(() => {
         setUserInfo(JSON.parse(localStorage.getItem('userInfo')));
+    }, []);
+
+    useEffect(() => {
+        if (userInfo.isAdmin == null) {
+            setUserInfo({isAdmin: false});
+            navigate('/Login');
+        }
     }, []);
 
     let seedData = [
