@@ -3,12 +3,15 @@ import './Login.css';
 import { Link } from 'react-router-dom';
 import validator from 'validator';
 import { useState, useEffect } from 'react';
+import { CreateUserAccount } from '../services/DataService';
+import { useNavigate } from 'react-router-dom';
 
 export default function SignUp() {
     // public int Id { get; set; } 
     // public string? UserName { get; set;}
     // public string? Password { get; set;}
 
+    let navigate = useNavigate();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [createUser, setCreateUser] = useState({});
@@ -16,7 +19,7 @@ export default function SignUp() {
     useEffect(() => {
         setCreateUser({
             id: 0,
-            username: username,
+            userName: username,
             password: password
         });
     }, [username, password]);
@@ -148,6 +151,16 @@ export default function SignUp() {
         }
     }
 
+    const SubmitClick = async () => {
+        let isCreated = await CreateUserAccount(createUser);
+
+        if (isCreated) {
+            navigate('/');
+        } else {
+            alert('Error account not created');
+        }
+    }
+
 
     return (
         <>
@@ -179,9 +192,9 @@ export default function SignUp() {
                             <li style={{color: `${validNumberColor}`}}>{numberError}</li>
                             <li style={{color: `${validSymbolColor}`}}>{symbolError}</li>
                         </ul>
-                        <Link to='/' className='btn-link'>
-                            <button className='login-btn'>Sign Up</button>
-                        </Link>
+                        {/* <Link to='/' className='btn-link'> */}
+                            <button className='login-btn' onClick={SubmitClick}>Sign Up</button>
+                        {/* </Link> */}
                         <div className='register-here'>
                             <p className='register-here-text'>Already have an account?</p>
                             <Link to='/Login' className='register-here-link'>Login Here</Link>
