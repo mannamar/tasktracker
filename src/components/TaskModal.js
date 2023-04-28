@@ -21,7 +21,6 @@ export default function TaskModal(props) {
     const handleShow = () => {
 
         let today = new Date().toISOString().split('T')[0];
-        console.log(today);
         setShow(true);
         if (props.isEdit) {
             setName(props.data.name);
@@ -50,7 +49,7 @@ export default function TaskModal(props) {
                 "id" : 0,
                 "TaskName" : name,
                 "UserID" : "1",
-                "PublisherName" : "Dan",
+                "PublisherName" : "An",
                 "Description" : description,
                 "Date" : date,
                 "Priority" : priority,
@@ -58,7 +57,8 @@ export default function TaskModal(props) {
                 "IsCompleted" : status,
                 "IsDeleted" : false,
                 "EndDate" : endDate,
-                "isAdded" : true
+                "isAdded" : true,
+                "Tags" : tag
             }
             console.log(item);
             handleClose();

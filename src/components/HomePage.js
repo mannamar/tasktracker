@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./HomePage.css"
 import { Container, Row, Card } from 'react-bootstrap';
@@ -10,6 +10,16 @@ import { getAllTasks } from '../services/taskService';
 
 
 export default function HomePage() {
+    const [taskItems, setTaskItems] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            let res = await getAllTasks();
+            setTaskItems(res);
+            console.log(res);
+        };
+        fetchData();
+    }, [])
 
     let seedData = [
         {

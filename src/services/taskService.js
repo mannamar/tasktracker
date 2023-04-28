@@ -25,7 +25,7 @@ async function addTask(task) {
 }
 
 async function updateTask(blogItem) {
-    const response = await fetch('https://amarblogapi.azurewebsites.net/blog/UpdateBlogItem', {
+    const response = await fetch('https://taskmanagersprint.azurewebsites.net/Task/UpdateTaskitem', {
         method: "POST",
         headers: {
             'Content-Type': 'application/json'
