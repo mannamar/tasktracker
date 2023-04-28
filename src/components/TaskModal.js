@@ -52,23 +52,23 @@ export default function TaskModal(props) {
         <>
             {
                 props.isEdit ?
-                <DotsThree className="taskBtn" size={24} color="#FFFFFF" onClick={handleShow} /> :
-                <Plus className="taskBtn" size={24} color="#FFFFFF" onClick={handleShow} />
+                <DotsThree className="taskBtn " size={24} color="#FFFFFF" onClick={handleShow} /> :
+                <Plus className={props.isAdmin ? "taskBtn" : "d-none"} size={24} color="#FFFFFF" onClick={handleShow} />
             }
 
             <Modal className="" show={show} onHide={handleClose} data-bs-theme="dark">
                 <Modal.Header closeButton>
-                    <Modal.Title className="modTitle">Add Task</Modal.Title>
+                    <Modal.Title className="modTitle">{props.isEdit ? "Edit" : "Add"} Task</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form>
 
                         <FloatingLabel className="mb-3 inpLabel" controlId="Name" label="Task Name">
-                            <Form.Control className="inp" type="text" placeholder="Task Name" value={name} onChange={(e) => setName(e.target.value)}/>
+                            <Form.Control disabled={!props.isAdmin} className="inp" type="text" placeholder="Task Name" value={name} onChange={(e) => setName(e.target.value)}/>
                         </FloatingLabel>
 
                         <FloatingLabel className="mb-3 inpLabel" controlId="Description" label="Task Description">
-                            <Form.Control className="inp descInp" as="textarea" placeholder="Task Description" value={description} onChange={(e) => setDescription(e.target.value)}/>
+                            <Form.Control disabled={!props.isAdmin} className="inp descInp" as="textarea" placeholder="Task Description" value={description} onChange={(e) => setDescription(e.target.value)}/>
                         </FloatingLabel>
 
 
@@ -76,13 +76,13 @@ export default function TaskModal(props) {
 
                             <Col xs={6}>
                                 <FloatingLabel className="mb-3 inpLabel" controlId="Tag" label="Tag">
-                                    <Form.Control className="inp" type="text" placeholder="Tag" value={tag} onChange={(e) => setTag(e.target.value)}/>
+                                    <Form.Control disabled={!props.isAdmin} className="inp" type="text" placeholder="Tag" value={tag} onChange={(e) => setTag(e.target.value)}/>
                                 </FloatingLabel>
                             </Col>
 
                             <Col xs={6}>
                                 <FloatingLabel className="mb-3 inpLabel" controlId="Assign" label="Assign To">
-                                    <Form.Select className="inp" aria-label="Default select example" value={assignee} onChange={(e) => setAssignee(e.target.value)}>
+                                    <Form.Select disabled={!props.isAdmin} className="inp" aria-label="Default select example" value={assignee} onChange={(e) => setAssignee(e.target.value)}>
                                         <option value="">Unassigned</option>
                                         <option value="Dan">Dan</option>
                                         <option value="John">John</option>
@@ -98,7 +98,7 @@ export default function TaskModal(props) {
                             <Col xs={6}>
 
                                 <FloatingLabel className="mb-3 inpLabel" controlId="Priority" label="Priority">
-                                    <Form.Select className="inp" aria-label="Default select example" value={priority} onChange={(e) => setPriority(e.target.value)}>
+                                    <Form.Select disabled={!props.isAdmin} className="inp" aria-label="Default select example" value={priority} onChange={(e) => setPriority(e.target.value)}>
                                         {/* <option>Priority</option> */}
                                         <option value="Low">Low</option>
                                         <option value="Med">Med</option>
@@ -129,7 +129,7 @@ export default function TaskModal(props) {
 
                                 <FloatingLabel className="mb-3 inpLabel" controlId="Start" label="Start">
                                     {/* <Form.Label>Start Date</Form.Label> */}
-                                    <Form.Control className="inp" type="date" placeholder="Start Date" value={date} onChange={(e) => setDate(e.target.value)}/>
+                                    <Form.Control disabled={!props.isAdmin} className="inp" type="date" placeholder="Start Date" value={date} onChange={(e) => setDate(e.target.value)}/>
                                 </FloatingLabel>
 
                             </Col>
@@ -138,7 +138,7 @@ export default function TaskModal(props) {
 
                                 <FloatingLabel className="mb-3 inpLabel" controlId="End" label="End">
                                     {/* <Form.Label>End Date</Form.Label> */}
-                                    <Form.Control className="inp" type="date" placeholder="End Date" value={endDate} onChange={(e) => setEndDate(e.target.value)}/>
+                                    <Form.Control disabled={!props.isAdmin} className="inp" type="date" placeholder="End Date" value={endDate} onChange={(e) => setEndDate(e.target.value)}/>
                                 </FloatingLabel>
 
                             </Col>
@@ -150,12 +150,12 @@ export default function TaskModal(props) {
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                        Close
-                    </Button>
-                    <Button variant="primary" onClick={handleSave}>
-                        Save Changes
-                    </Button>
+                    <button className={(props.isEdit && props.isAdmin) ? "delBtn" : "d-none"} variant="secondary" onClick={handleClose}>
+                        Delete
+                    </button>
+                    <button className="addBtn" variant="primary" onClick={handleSave}>
+                        {props.isEdit ? "Save Changes" : "Add Task"}
+                    </button>
                 </Modal.Footer>
             </Modal>
         </>
