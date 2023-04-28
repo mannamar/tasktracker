@@ -43,50 +43,6 @@ export default function HomePage() {
             status: "To-Do",
             date: "2023-04-26",
             endDate: "2023-04-26"
-        },
-        {
-            id: 3,
-            name: "Practice Guitar",
-            description: "Learn that gnarly Hendrix riff",
-            tag: "Music",
-            assignee: "Lerissa",
-            priority: "med",
-            status: "To-Do",
-            date: "2023-04-26",
-            endDate: "2023-04-26"
-        },
-        {
-            id: 4,
-            name: "Plan Vacation",
-            description: "Figure out if we're going to Hawaii or Tahiti",
-            tag: "Vacay",
-            assignee: "John",
-            priority: "low",
-            status: "In-Prog",
-            date: "2023-04-26",
-            endDate: "2023-04-30"
-        },
-        {
-            id: 5,
-            name: "Book Flights",
-            description: "Make sure everyone gets a window seat",
-            tag: "Vacay",
-            assignee: "",
-            priority: "low",
-            status: "To-Do",
-            date: "2023-04-26",
-            endDate: "2023-05-30"
-        },
-        {
-            id: 6,
-            name: "Smash Tournament",
-            description: "Kick butt and spam down-B",
-            tag: "E-Sports",
-            assignee: "Dan",
-            priority: "low",
-            status: "Done",
-            date: "2023-03-30",
-            endDate: "2023-03-30"
         }
     ]
 
