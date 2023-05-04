@@ -87,7 +87,7 @@ export default function TaskModal(props) {
         handleClose();
         let result = await updateTask(item);
         if (result) {
-
+            props.setBool(!props.bool);
         } else {
             alert(`Blog Items was not deleted`)
         }
@@ -159,7 +159,7 @@ export default function TaskModal(props) {
                                 <FloatingLabel className="mb-3 inpLabel" controlId="Status" label="Status">
                                     <Form.Select className="inp" aria-label="Default select example" value={status} onChange={(e) => setStatus(e.target.value)}>
                                         {/* <option>Category</option> */}
-                                        <option value="To-do">To-Do</option>
+                                        <option value="To-Do">To-Do</option>
                                         <option value="In-Prog">In-Prog</option>
                                         <option value="Done">Done</option>
                                     </Form.Select>

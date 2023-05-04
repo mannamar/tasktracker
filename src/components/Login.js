@@ -9,15 +9,15 @@ export default function Login() {
     let navigate = useNavigate();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [loginUser, setLoginUser] = useState({});
-    const [token, setToken] = useState('');
+    // const [loginUser, setLoginUser] = useState({});
+    // const [token, setToken] = useState('');
 
-    useEffect(() => {
-        setLoginUser({
-            Username: username,
-            Password: password
-        });
-    }, [username, password]);
+    // useEffect(() => {
+    //     setLoginUser({
+    //         Username: username,
+    //         Password: password
+    //     });
+    // }, [username, password]);
 
     const inputUsername = (e) => {
         setUsername(e.target.value);
@@ -28,19 +28,29 @@ export default function Login() {
     }
 
     const SubmitLogin = async () => {
-        setToken(await LoginService(loginUser));
-    }
-
-    const LoginInfo = async () => {
-        localStorage.setItem('userInfo', JSON.stringify(await GetUserInfo(username)));
-    }
-
-    useEffect(() => {
+        let loginUser = {
+            Username: username,
+            Password: password
+        }
+        let token = await LoginService(loginUser);
+        let userInfo = await GetUserInfo(username);
         if (token.token != null) {
-            LoginInfo();
+            localStorage.setItem("token", token.token);
+            localStorage.setItem('userInfo', JSON.stringify(userInfo));
             navigate('/');
         }
-    }, [token]);
+    }
+
+    // const LoginInfo = async () => {
+    //     localStorage.setItem('userInfo', JSON.stringify(await GetUserInfo(username)));
+    // }
+
+    // useEffect(() => {
+    //     if (token.token != null) {
+    //         LoginInfo();
+    //         navigate('/');
+    //     }
+    // }, [token]);
 
 
     return (

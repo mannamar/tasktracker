@@ -13,7 +13,7 @@ export default function TaskCard(props) {
                 ref={provided.innerRef}>
                     <Card.Body className="task-card d-flex justify-content-between">
                         <span className="taskTxt">{props.task.taskName}</span>
-                        <TaskModal isEdit={true} data={props.task} isAdmin={props.isAdmin}/>
+                        <TaskModal isEdit={true} data={props.task} isAdmin={props.isAdmin} bool={props.bool} setBool={props.setBool}/>
                     </Card.Body>
                 </Card>
             )}

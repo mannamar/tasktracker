@@ -13,9 +13,12 @@ import { useNavigate } from 'react-router-dom';
 export default function HomePage() {
     const [taskItems, setTaskItems] = useState([]);
     const [needsRefresh, setNeedsRefresh] = useState(true);
-    const [userInfo, setUserInfo] = useState({});
+    // const [userInfo, setUserInfo] = useState({});
 
     let navigate = useNavigate();
+
+    let userInfo = JSON.parse(localStorage.getItem('userInfo'));
+    let isAdmin = (userInfo && userInfo.isAdmin) ? userInfo.isAdmin : false;
 
     useEffect(() => {
         const fetchData = async () => {
@@ -27,13 +30,10 @@ export default function HomePage() {
     }, [needsRefresh])
 
     useEffect(() => {
-        if(JSON.parse(localStorage.getItem('userInfo')) === null) {
-            setUserInfo({isAdmin: false});
+        if(userInfo === null) {
+            // setUserInfo({isAdmin: false});
             navigate('/Login');
-        } else {
-            setUserInfo(JSON.parse(localStorage.getItem('userInfo')));
-        }
-        
+        } 
     }, []);
 
     // useEffect(() => {
@@ -83,7 +83,7 @@ export default function HomePage() {
         let taskIndex = taskItems.findIndex(item => item.id === Number(draggableId));
         console.log(taskIndex);
         console.log("Moved to ", destination.droppableId);
-        let task = await getTaskItemById(Number(draggableId));
+        let task = taskItems[taskIndex];
         console.log(task);
         task.isCompleted = destination.droppableId;
         [taskIndex].status = destination.droppableId;
@@ -119,7 +119,7 @@ export default function HomePage() {
 
                         <Card className="md-col-4">
                             <Card.Header className="to-do">To Do . . .
-                                <TaskModal status="To-Do" isAdmin={userInfo.isAdmin} bool={needsRefresh} setBool={setNeedsRefresh}/>
+                                <TaskModal status="To-Do" isAdmin={isAdmin} bool={needsRefresh} setBool={setNeedsRefresh}/>
                             </Card.Header>
 
                             <Droppable droppableId="To-Do">
@@ -130,7 +130,7 @@ export default function HomePage() {
                                     >
                                         {taskItems.filter(task => task.isCompleted === "To-Do").filter(task => task.isDeleted === false).map((task, index) => {
                                             return (
-                                                <TaskCard task={task} index={index} key={task.id} isAdmin={userInfo.isAdmin}/>
+                                                <TaskCard task={task} index={index} key={task.id} isAdmin={userInfo.isAdmin} bool={needsRefresh} setBool={setNeedsRefresh}/>
                                             )
                                         })}
                                         {provided.placeholder}
@@ -143,7 +143,7 @@ export default function HomePage() {
                         </Card>
                         <Card className="md-col-4">
                             <Card.Header className="to-do">In Progress . . .
-                                <TaskModal status="In-Prog" isAdmin={userInfo.isAdmin} bool={needsRefresh} setBool={setNeedsRefresh}/>
+                                <TaskModal status="In-Prog" isAdmin={isAdmin} bool={needsRefresh} setBool={setNeedsRefresh}/>
                             </Card.Header>
 
                             <Droppable droppableId="In-Prog">
@@ -154,7 +154,7 @@ export default function HomePage() {
                                     >
                                         {taskItems.filter(task => task.isCompleted === "In-Prog").filter(task => task.isDeleted === false).map((task, index) => {
                                             return (
-                                                <TaskCard task={task} index={index} key={task.id} isAdmin={userInfo.isAdmin}/>
+                                                <TaskCard task={task} index={index} key={task.id} isAdmin={userInfo.isAdmin} bool={needsRefresh} setBool={setNeedsRefresh}/>
                                             )
                                         })}
                                         {provided.placeholder}
@@ -165,7 +165,7 @@ export default function HomePage() {
                         </Card>
                         <Card className="md-col-4">
                             <Card.Header className="to-do">Done . . .
-                                <TaskModal status="Done" isAdmin={userInfo.isAdmin} bool={needsRefresh} setBool={setNeedsRefresh}/>
+                                <TaskModal status="Done" isAdmin={isAdmin} bool={needsRefresh} setBool={setNeedsRefresh}/>
                             </Card.Header>
 
                             <Droppable droppableId="Done">
@@ -176,7 +176,7 @@ export default function HomePage() {
                                     >
                                         {taskItems.filter(task => task.isCompleted === "Done").filter(task => task.isDeleted === false).map((task, index) => {
                                             return (
-                                                <TaskCard task={task} index={index} key={task.id} isAdmin={userInfo.isAdmin}/>
+                                                <TaskCard task={task} index={index} key={task.id} isAdmin={userInfo.isAdmin} bool={needsRefresh} setBool={setNeedsRefresh}/>
                                             )
                                         })}
                                         {provided.placeholder}
