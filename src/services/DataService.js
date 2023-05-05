@@ -1,7 +1,7 @@
 // https://taskmanagersprint.azurewebsites.net/User/AddUser
 
 
-const LoginService = async (loginUser) => {
+const LoginService = async (loginUser, setIsLoading) => {
     const response = await fetch('https://taskmanagersprint.azurewebsites.net/User/Login',
         {
             method: 'POST',
@@ -11,10 +11,12 @@ const LoginService = async (loginUser) => {
             body: JSON.stringify(loginUser)
         });
     if (!response.ok) {
+        setIsLoading(false);
         alert("Invalid login. Please double check your username and password.");
         const message = `An error has occured ${response.status}`;
         throw new Error(message);
     }
+    setIsLoading(false);
     const data = await response.json();
     return data;
 }

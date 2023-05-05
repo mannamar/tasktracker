@@ -1,7 +1,6 @@
 async function getAllTasks() {
     let res = await fetch('https://taskmanagersprint.azurewebsites.net/Task/GetAllBlogItems');
     let data = await res.json();
-    console.log(data);
     return data;
 }
 

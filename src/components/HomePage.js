@@ -8,11 +8,13 @@ import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import TaskCard from './TaskCard';
 import { getAllTasks, getTaskItemById, updateTask } from '../services/taskService';
 import { useNavigate } from 'react-router-dom';
+import Loading from './Loading';
 
 
 export default function HomePage() {
     const [taskItems, setTaskItems] = useState([]);
     const [needsRefresh, setNeedsRefresh] = useState(true);
+    const [isLoading, setIsLoading] = useState(true);
     // const [userInfo, setUserInfo] = useState({});
 
     let navigate = useNavigate();
@@ -24,7 +26,7 @@ export default function HomePage() {
         const fetchData = async () => {
             let res = await getAllTasks();
             setTaskItems(res);
-            console.log(res);
+            setIsLoading(false);
         };
         fetchData();
     }, [needsRefresh])
@@ -108,6 +110,9 @@ export default function HomePage() {
 
     return (
         <div>
+            {/* Note: Will load forever if we ever drop the tables */}
+            <Loading loading={isLoading}/>
+
             <nav className="navbar nav-bg ">
                 <div className="container-fluid">
                     <span className="nav-title mb-0 h1">Task Tracker</span>

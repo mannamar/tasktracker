@@ -4,11 +4,13 @@ import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { LoginService, GetUserInfo } from '../services/DataService';
 import { useNavigate } from 'react-router-dom';
+import Loading from './Loading';
 
 export default function Login() {
     let navigate = useNavigate();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
     // const [loginUser, setLoginUser] = useState({});
     // const [token, setToken] = useState('');
 
@@ -32,7 +34,8 @@ export default function Login() {
             Username: username,
             Password: password
         }
-        let token = await LoginService(loginUser);
+        setIsLoading(true);
+        let token = await LoginService(loginUser, setIsLoading);
         let userInfo = await GetUserInfo(username);
         if (token.token != null) {
             localStorage.setItem("token", token.token);
@@ -55,6 +58,8 @@ export default function Login() {
 
     return (
         <>
+            <Loading loading={isLoading}/>
+
             <div className='login-row'>
                 <div className='login-col'>
                     <p className='login-header'>Welcome Back</p>
