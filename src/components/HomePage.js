@@ -102,13 +102,17 @@ export default function HomePage() {
         // Need to add logic for drag to new category
     }
 
+    function logOut() {
+        localStorage.removeItem('userInfo');
+    }
+
     return (
         <div>
             <nav className="navbar nav-bg ">
                 <div className="container-fluid">
                     <span className="nav-title mb-0 h1">Task Tracker</span>
                     <Link to='/Login'>
-                        <button type="button" className="btn-bg ">Log Out</button>
+                        <button type="button" className="btn-bg " onClick={logOut}>Log Out</button>
                     </Link>
                 </div>
             </nav>
